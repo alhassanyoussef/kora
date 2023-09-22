@@ -136,13 +136,9 @@ int rep_var(info_t *inf)
 			continue;
 		}
 		rep_str(&inf->argv[iii], dupli_sat(""));
-			rep_str(&(inf->argv[iii]),
-				dupli_sat(char_str(n->str, '=') + 1));
-			continue;
-		}
-		rep_str(&inf->argv[iii], dupli_sat(""));\
-		return (0);
 	}
+	return (0);
+}
 
 /**
  * rep_str - rep string
