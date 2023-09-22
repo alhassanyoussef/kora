@@ -17,7 +17,7 @@ char **split_str(char *str, char *de)
 	if (!de)
 		de = " ";
 	for (w = 0; str[w] != '\0'; w++)
-		if (!is_that_deli(str[w], d) &&
+		if (!is_that_deli(str[w], de) &&
 			(is_that_deli(str[w + 1], de) || !str[w + 1]))
 			num_words++;
 
@@ -28,7 +28,7 @@ char **split_str(char *str, char *de)
 		return (NULL);
 	for (w = 0, x = 0; x < num_words; x++)
 	{
-		while (is_that_deli(str[i], de))
+		while (is_that_deli(str[w], de))
 			w++;
 		y = 0;
 		while (!is_that_deli(str[w + y], de) && str[w + y])
