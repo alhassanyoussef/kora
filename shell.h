@@ -188,9 +188,9 @@ int _getline(info_t *, char **, size_t *);
 void sigintHandler(int);
 
 /* prototyps_getinfo.c */
-void clear_info(info_t *);
-void set_info(info_t *, char **);
-void free_info(info_t *, int);
+void clinformation(info_t *);
+void s_information(info_t *, char **);
+void frinformation(info_t *, int);
 
 /* prototyps_environ.c */
 char *get_enviro(info_t *, const char *);
