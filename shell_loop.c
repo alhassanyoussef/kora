@@ -57,11 +57,11 @@ int find_builtin(info_t *info)
 	int i, built_in_ret = -1;
 	builtin_table builtintbl[] = {
 		{"exit", my_exit},
-		{"env", _myenv},
+		{"env", my_enviro},
 		{"help", my_help},
 		{"history", my_date},
-		{"setenv", _mysetenv},
-		{"unsetenv", _myunsetenv},
+		{"setenv", my_set_env},
+		{"unsetenv", my_unset_env},
 		{"cd", my_cd},
 		{"alias", alias_mine},
 		{NULL, NULL}
@@ -100,7 +100,7 @@ void find_cmd(info_t *info)
 	if (!k)
 		return;
 
-	path = catch_pat(info, _getenv(info, "PATH="), info->argv[0]);
+	path = catch_pat(info, get_enviro(info, "PATH="), info->argv[0]);
 	if (path)
 	{
 		info->path = path;
@@ -108,13 +108,13 @@ void find_cmd(info_t *info)
 	}
 	else
 	{
-		if ((inter_act(info) || _getenv(info, "PATH=")
+		if ((inter_act(info) || get_enviro(info, "PATH=")
 			|| info->argv[0][0] == '/') && hello_cmd(info, info->argv[0]))
 			fork_cmd(info);
 		else if (*(info->arg) != '\n')
 		{
 			info->status = 127;
-			print_error(info, "not found\n");
+			printerr(info, "not found\n");
 		}
 	}
 }
@@ -154,7 +154,7 @@ void fork_cmd(info_t *info)
 		{
 			info->status = WEXITSTATUS(info->status);
 			if (info->status == 126)
-				print_error(info, "Permission denied\n");
+				printerr(info, "Permission denied\n");
 		}
 	}
 }

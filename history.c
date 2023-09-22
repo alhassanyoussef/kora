@@ -11,7 +11,7 @@ char *pring_his_file(info_t *info)
 {
 	char *buf, *dir;
 
-	dir = _getenv(info, "HOME=");
+	dir = get_enviro(info, "HOME=");
 	if (!dir)
 		return (NULL);
 	buf = malloc(sizeof(char) * (len_str(dir) + len_str(HIST_FILE) + 2));

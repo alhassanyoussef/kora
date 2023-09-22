@@ -167,11 +167,11 @@ int is_alpha(int);
 int a_toi(char *);
 
 /* prototyps_errors1.c */
-int _erratoi(char *);
-void print_error(info_t *, char *);
-int print_d(int, int);
-char *convert_number(long int, int, int);
-void remove_comments(char *);
+int err(char *);
+void printerr(info_t *, char *);
+int printdec(int, int);
+char *convnum(long int, int, int);
+void remcomm(char *);
 
 /* prototyps_builtin.c */
 int my_exit(info_t *);
@@ -193,11 +193,11 @@ void set_info(info_t *, char **);
 void free_info(info_t *, int);
 
 /* prototyps_environ.c */
-char *_getenv(info_t *, const char *);
-int _myenv(info_t *);
-int _mysetenv(info_t *);
-int _myunsetenv(info_t *);
-int populate_env_list(info_t *);
+char *get_enviro(info_t *, const char *);
+int my_enviro(info_t *);
+int my_set_env(info_t *);
+int my_unset_env(info_t *);
+int pop_envlist(info_t *);
 
 /* prototyps_getenv.c */
 char **catch_env(info_t *);

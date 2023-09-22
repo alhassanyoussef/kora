@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * main - entry point
+ * main - entry points
  * @argc: arg count
  * @argv: arg vector
  *
@@ -37,7 +37,7 @@ int main(int argc, char **argv)
 		}
 		enfo->readfd = nat;
 	}
-	populate_env_list(enfo);
+	pop_envlist(enfo);
 	read_history(enfo);
 	hsh(enfo, argv);
 	return (EXIT_SUCCESS);

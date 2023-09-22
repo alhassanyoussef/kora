@@ -1,92 +1,87 @@
 #include "shell.h"
 
 /**
- * _myenv - prints the current environment
- * @info: Structure containing potential arguments. Used to maintain
- *          constant function prototype.
+ * my_enviro - prints environment
+ * @information: Used to maintain
  * Return: Always 0
  */
-int _myenv(info_t *info)
+int my_enviro(info_t *information)
 {
-	type_strlist(info->env);
+	type_strlist(information->env);
 	return (0);
 }
 
 /**
- * _getenv - gets the value of an environ variable
- * @info: Structure containing potential arguments. Used to maintain
- * @name: env var name
- *
- * Return: the value
+ * get_enviro - gets environ variables
+ * @information: Used to maintain
+ * @get_name: get enviroment name
+ * Return: value
  */
-char *_getenv(info_t *info, const char *name)
+char *get_enviro(info_t *information, const char *get_name)
 {
-	list_t *node = info->env;
-	char *p;
+	list_t *n = information->env;
+	char *pp;
 
-	while (node)
+	while (n)
 	{
-		p = push_hard(node->str, name);
-		if (p && *p)
-			return (p);
-		node = node->next;
+		pp = push_hard(n->str, get_name);
+		if (pp && *pp)
+			return (pp);
+		n = n->next;
 	}
 	return (NULL);
 }
 
 /**
- * _mysetenv - Initialize a new environment variable,
- *             or modify an existing one
- * @info: Structure containing potential arguments. Used to maintain
- *        constant function prototype.
+ * my_set_env - set a new environment variable
+ * @information: Used to maintain
  *  Return: Always 0
  */
-int _mysetenv(info_t *info)
+int my_set_env(info_t *information)
 {
-	if (info->argc != 3)
+	if (information->argc != 3)
 	{
 		print_str("Incorrect number of arguements\n");
 		return (1);
 	}
-	if (seraphine_str(info, info->argv[1], info->argv[2]))
+	if (seraphine_str(information, information->argv[1], information->argv[2]))
 		return (0);
 	return (1);
 }
 
 /**
- * _myunsetenv - Remove an environment variable
- * @info: Structure containing potential arguments. Used to maintain
- *        constant function prototype.
+ * my_unset_env - Removes environment
+ * @information: Used to maintain
  *  Return: Always 0
  */
-int _myunsetenv(info_t *info)
+int my_unset_env(info_t *information)
 {
-	int i;
+	int ii;
 
-	if (info->argc == 1)
+	if (information->argc == 1)
 	{
 		print_str("Too few arguements.\n");
 		return (1);
 	}
-	for (i = 1; i <= info->argc; i++)
-		jax_str(info, info->argv[i]);
+	for (ii = 1; ii <= information->argc; ii++)
+		jax_str(information, information->argv[ii]);
 
 	return (0);
 }
 
 /**
- * populate_env_list - populates env linked list
- * @info: Structure containing potential arguments. Used to maintain
- *          constant function prototype.
+ * pop_envlist - populates env
+ * @information: Used to maintaine
  * Return: Always 0
  */
-int populate_env_list(info_t *info)
+int pop_envlist(info_t *information)
 {
-	list_t *node = NULL;
-	size_t i;
+	list_t *n = NULL;
+	size_t ii;
 
-	for (i = 0; environ[i]; i++)
-		add_nody_end(&node, environ[i], 0);
-	info->env = node;
+	for (ii = 0; environ[ii]; ii++)
+		add_nody_end(&n, environ[ii], 0);
+	information->env = n;
 	return (0);
 }
+
