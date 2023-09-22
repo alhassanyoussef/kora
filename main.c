@@ -39,6 +39,6 @@ int main(int argc, char **argv)
 	}
 	pop_envlist(enfo);
 	read_history(enfo);
-	hsh(enfo, argv);
+	sh(enfo, argv);
 	return (EXIT_SUCCESS);
 }

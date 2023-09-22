@@ -65,10 +65,10 @@ ssize_t _youmi(info_t *id)
 		j = x;
 		p = buff + x;
 
-		check_chain(id, buff, &j, x, lenth);
+		ch_ch(id, buff, &j, x, lenth);
 		while (j < lenth)
 		{
-			if (is_chain(id, buff, &j))
+			if (chain(id, buff, &j))
 				break;
 			j++;
 		}

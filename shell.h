@@ -112,10 +112,10 @@ typedef struct builtin
 
 
 /* prototyps_shloop.c */
-int hsh(info_t *, char **);
-int find_builtin(info_t *);
-void find_cmd(info_t *);
-void fork_cmd(info_t *);
+int sh(info_t *, char **);
+int f_built(info_t *);
+void f_cm(info_t *);
+void fk_cm(info_t *);
 
 /* prototyps_parser.c */
 int hello_cmd(info_t *, char *);
@@ -158,7 +158,7 @@ void ffree(char **);
 void *_realloc(void *, unsigned int, unsigned int);
 
 /* prototyps_memory.c */
-int bfree(void **);
+int fr(void **);
 
 /*prototyps a_toi.c */
 int inter_act(info_t *info);
@@ -226,10 +226,10 @@ list_t *n_start(list_t *, char *, char);
 ssize_t gt_index(list_t *, list_t *);
 
 /* prototyps_vars.c */
-int is_chain(info_t *, char *, size_t *);
-void check_chain(info_t *, char *, size_t *, size_t, size_t);
-int replace_alias(info_t *);
-int replace_vars(info_t *);
-int replace_string(char **, char *);
+int chain(info_t *, char *, size_t *);
+void ch_ch(info_t *, char *, size_t *, size_t, size_t);
+int rep_ali(info_t *);
+int rep_var(info_t *);
+int rep_str(char **, char *);
 
 #endif

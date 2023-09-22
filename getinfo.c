@@ -39,8 +39,8 @@ void s_information(info_t *information, char **argvec)
 			;
 		information->argc = ii;
 
-		replace_alias(information);
-		replace_vars(information);
+		rep_ali(information);
+		rep_var(information);
 	}
 }
 
@@ -66,7 +66,7 @@ void frinformation(info_t *information, int al)
 			release_lis(&(information->alias));
 		ffree(information->environ);
 			information->environ = NULL;
-		bfree((void **)information->cmd_buf);
+		fr((void **)information->cmd_buf);
 		if (information->readfd > 2)
 			close(information->readfd);
 		_putchar(BUF_FLUSH);
