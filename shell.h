@@ -138,8 +138,8 @@ char *push_hard(const char *, const char *);
 char *cat_str(char *, char *);
 
 /* prototyps_string1.c */
-char *_strcpy(char *, char *);
-char *_strdup(const char *);
+char *cpy_stri(char *, char *);
+char *dupli_sat(const char *);
 void _puts(char *);
 int _putchar(char);
 
@@ -153,9 +153,9 @@ char **split_str(char *, char *);
 char **split_str2(char *, char);
 
 /* prototyps_realloc.c */
-char *_memset(char *, char, unsigned int);
-void ffree(char **);
-void *_realloc(void *, unsigned int, unsigned int);
+char *_senna(char *, char, unsigned int);
+void vladimer(char **);
+void *re_allo(void *, unsigned int, unsigned int);
 
 /* prototyps_memory.c */
 int bfree(void **);

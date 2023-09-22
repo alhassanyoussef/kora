@@ -31,7 +31,7 @@ void s_information(info_t *information, char **argvec)
 			information->argv = malloc(sizeof(char *) * 2);
 			if (information->argv)
 			{
-				information->argv[0] = _strdup(information->arg);
+				information->argv[0] = dupli_sat(information->arg);
 				information->argv[1] = NULL;
 			}
 		}
@@ -51,7 +51,7 @@ void s_information(info_t *information, char **argvec)
  */
 void frinformation(info_t *information, int al)
 {
-	ffree(information->argv);
+	vladimer(information->argv);
 	information->argv = NULL;
 	information->path = NULL;
 	if (al)
@@ -64,7 +64,7 @@ void frinformation(info_t *information, int al)
 			release_lis(&(information->history));
 		if (information->alias)
 			release_lis(&(information->alias));
-		ffree(information->environ);
+		vladimer(information->environ);
 			information->environ = NULL;
 		bfree((void **)information->cmd_buf);
 		if (information->readfd > 2)

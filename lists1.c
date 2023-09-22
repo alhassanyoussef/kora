@@ -45,7 +45,7 @@ char **listrings(list_t *henode)
 			return (NULL);
 		}
 
-		string = _strcpy(string, n->str);
+		string = cpy_stri(string, n->str);
 		strings[iii] = string;
 	}
 	strings[iii] = NULL;

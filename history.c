@@ -18,7 +18,7 @@ char *pring_his_file(info_t *info)
 	if (!buf)
 		return (NULL);
 	buf[0] = 0;
-	_strcpy(buf, dir);
+	cpy_stri(buf, dir);
 	cat_str(buf, "/");
 	cat_str(buf, HIST_FILE);
 	return (buf);
