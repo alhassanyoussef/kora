@@ -18,7 +18,7 @@ int hsh(info_t *info, char **av)
 		if (inter_act(info))
 			_puts("$ ");
 		 write_char(BUF_FLUSH);
-		r = get_input(info);
+		r = _youmi(info);
 		if (r != -1)
 		{
 			set_info(info, av);

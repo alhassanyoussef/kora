@@ -1,168 +1,167 @@
 #include "shell.h"
 
 /**
- * input_buf - buffers chained commands
- * @info: parameter struct
- * @buf: address of buffer
- * @len: address of len var
+ * yasoo_hasagi -func that buffers chained commands
+ * @id: struct factor
+ * @buff: buff address
+ * @lenth: adres of lenth var
  *
  * Return: bytes read
  */
-ssize_t input_buf(info_t *info, char **buf, size_t *len)
+ssize_t yasoo_hasagi(info_t *id, char **buff, size_t *lenth)
 {
-	ssize_t r = 0;
-	size_t len_p = 0;
+	ssize_t wr = 0;
+	size_t lenth_p = 0;
 
-	if (!*len) /* if nothing left in the buffer, fill it */
+	if (!*lenth)
 	{
-		/*bfree((void **)info->cmd_buf);*/
-		free(*buf);
-		*buf = NULL;
-		signal(SIGINT, sigintHandler);
-#if USE_GETLINE
-		r = getline(buf, &len_p, stdin);
+		free(*buff);
+		*buff = NULL;
+		signal(SIGINT, zed_assian);
+#if USEget_linee
+		wr = getline(buff, &lenth_p, stdin);
 #else
-		r = _getline(info, buf, &len_p);
+		wr = get_linee(id, buff, &lenth_p);
 #endif
-		if (r > 0)
+		if (wr > 0)
 		{
-			if ((*buf)[r - 1] == '\n')
+			if ((*buff)[wr - 1] == '\n')
 			{
-				(*buf)[r - 1] = '\0'; /* remove trailing newline */
-				r--;
+				(*buff)[wr - 1] = '\0'; /* wremove twrailing newline */
+				wr--;
 			}
-			info->linecount_flag = 1;
-			remcomm(*buf);
-			build_history_list(info, *buf, info->histcount++);
-			/* if (char_str(*buf, ';')) is this a command chain? */
+			id->linecount_flag = 1;
+			remcomm(*buff);
+			build_history_list(id, *buff, id->histcount++);
+			/* if (char_str(*buff, ';')) is this a command chain? */
 			{
-				*len = r;
-				info->cmd_buf = buf;
+				*lenth = wr;
+				id->cmd_buf = buff;
 			}
 		}
 	}
-	return (r);
+	return (wr);
 }
 
 /**
- * get_input - gets a line minus the newline
- * @info: parameter struct
+ * _youmi - func that get a line
+ * @id: factor struct
  *
  * Return: bytes read
  */
-ssize_t get_input(info_t *info)
+ssize_t _youmi(info_t *id)
 {
-	static char *buf; /* the ';' command chain buffer */
-	static size_t i, j, len;
-	ssize_t r = 0;
-	char **buf_p = &(info->arg), *p;
+	static char *buff;
+	static size_t x, j, lenth;
+	ssize_t wr = 0;
+	char **buff_p = &(id->arg), *p;
 
 	_putchar(BUF_FLUSH);
-	r = input_buf(info, &buf, &len);
-	if (r == -1) /* EOF */
+	wr = yasoo_hasagi(id, &buff, &lenth);
+	if (wr == -1)
 		return (-1);
-	if (len)	/* we have commands left in the chain buffer */
+	if (lenth)
 	{
-		j = i; /* init new iterator to current buf position */
-		p = buf + i; /* get pointer for return */
+		j = x;
+		p = buff + x;
 
-		check_chain(info, buf, &j, i, len);
-		while (j < len) /* iterate to semicolon or end */
+		check_chain(id, buff, &j, x, lenth);
+		while (j < lenth)
 		{
-			if (is_chain(info, buf, &j))
+			if (is_chain(id, buff, &j))
 				break;
 			j++;
 		}
 
-		i = j + 1; /* increment past nulled ';'' */
-		if (i >= len) /* reached end of buffer? */
+		x = j + 1;
+		if (x >= lenth)
 		{
-			i = len = 0; /* reset position and length */
-			info->cmd_buf_type = CMD_NORM;
+			x = lenth = 0;
+			id->cmd_buf_type = CMD_NORM;
 		}
 
-		*buf_p = p;
+		*buff_p = p;
 		return (len_str(p));
 	}
 
-	*buf_p = buf;
-	return (r);
+	*buff_p = buff;
+	return (wr);
 }
 
 /**
- * read_buf - reads a buffer
- * @info: parameter struct
- * @buf: buffer
+ * samira_bu - reads a bufffer
+ * @id: parameter struct
+ * @buff: bufffer
  * @i: size
  *
  * Return: r
  */
-ssize_t read_buf(info_t *info, char *buf, size_t *i)
+ssize_t samira_bu(info_t *id, char *buff, size_t *i)
 {
-	ssize_t r = 0;
+	ssize_t wr = 0;
 
 	if (*i)
 		return (0);
-	r = read(info->readfd, buf, READ_BUF_SIZE);
-	if (r >= 0)
-		*i = r;
-	return (r);
+	wr = read(id->readfd, buff, READ_BUF_SIZE);
+	if (wr >= 0)
+		*i = wr;
+	return (wr);
 }
 
 /**
- * _getline - gets the next line of input from STDIN
- * @info: parameter struct
- * @ptr: address of pointer to buffer, preallocated or NULL
- * @length: size of preallocated ptr buffer if not NULL
+ * get_linee - func that get the next line of input from STDIN
+ * @id: factor struct
+ * @ptr: addre of point to buf
+ * @lenthgth: area ptr buffer if not NULL
  *
  * Return: s
  */
-int _getline(info_t *info, char **ptr, size_t *length)
+int get_linee(info_t *id, char **ptr, size_t *lenthgth)
 {
-	static char buf[READ_BUF_SIZE];
-	static size_t i, len;
+	static char buff[READ_BUF_SIZE];
+	static size_t i, lenth;
 	size_t k;
-	ssize_t r = 0, s = 0;
+	ssize_t wr = 0, s = 0;
 	char *p = NULL, *new_p = NULL, *c;
 
 	p = *ptr;
-	if (p && length)
-		s = *length;
-	if (i == len)
-		i = len = 0;
+	if (p && lenthgth)
+		s = *lenthgth;
+	if (i == lenth)
+		i = lenth = 0;
 
-	r = read_buf(info, buf, &len);
-	if (r == -1 || (r == 0 && len == 0))
+	wr = samira_bu(id, buff, &lenth);
+	if (wr == -1 || (wr == 0 && lenth == 0))
 		return (-1);
 
-	c = char_str(buf + i, '\n');
-	k = c ? 1 + (unsigned int)(c - buf) : len;
+	c = char_str(buff + i, '\n');
+	k = c ? 1 + (unsigned int)(c - buff) : lenth;
 	new_p = _realloc(p, s, s ? s + k : k + 1);
-	if (!new_p) /* MALLOC FAILURE! */
+	if (!new_p)
 		return (p ? free(p), -1 : -1);
 
 	if (s)
-		concat_str(new_p, buf + i, k - i);
+		concat_str(new_p, buff + i, k - i);
 	else
-		copy_string(new_p, buf + i, k - i + 1);
+		copy_string(new_p, buff + i, k - i + 1);
 
 	s += k - i;
 	i = k;
 	p = new_p;
 
-	if (length)
-		*length = s;
+	if (lenthgth)
+		*lenthgth = s;
 	*ptr = p;
 	return (s);
 }
 
 /**
- * sigintHandler - blocks ctrl-C
- * @sig_num: the signal number
+ * zed_assian - blocks ctrl-C
+ * @sig_num: number signal
  *
  * Return: void
  */
-void sigintHandler(__attribute__((unused))int sig_num)
+void zed_assian(__attribute__((unused))int sig_num)
 {
 	_puts("\n");
 	_puts("$ ");

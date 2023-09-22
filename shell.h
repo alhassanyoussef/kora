@@ -183,9 +183,9 @@ int my_date(info_t *);
 int alias_mine(info_t *);
 
 /*prototyps_getline.c */
-ssize_t get_input(info_t *);
-int _getline(info_t *, char **, size_t *);
-void sigintHandler(int);
+ssize_t _youmi(info_t *);
+int get_linee(info_t *, char **, size_t *);
+void zed_assian(int);
 
 /* prototyps_getinfo.c */
 void clear_info(info_t *);
