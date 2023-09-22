@@ -87,8 +87,13 @@ int rep_ali(info_t *inf)
 		posi = char_str(n->str, '=');
 		if (!posi)
 			return (0);
+<<<<<<< HEAD
 		posi = _strdup(posi + 1);
 		if (!posi)
+=======
+		p = dupli_sat(p + 1);
+		if (!p)
+>>>>>>> 87d3fb219a3b097ecdf6539deb4eee44e6c4f40e
 			return (0);
 		inf->argv[0] = posi;
 	}
@@ -112,24 +117,42 @@ int rep_var(info_t *inf)
 
 		if (!cmp_str(inf->argv[iii], "$?"))
 		{
+<<<<<<< HEAD
 			rep_str(&(inf->argv[iii]),
 				_strdup(convnum(inf->status, 10, 0)));
+=======
+			replace_string(&(info->argv[i]),
+				dupli_sat(convnum(info->status, 10, 0)));
+>>>>>>> 87d3fb219a3b097ecdf6539deb4eee44e6c4f40e
 			continue;
 		}
 		if (!cmp_str(inf->argv[iii], "$$"))
 		{
+<<<<<<< HEAD
 			rep_str(&(inf->argv[iii]),
 				_strdup(convnum(getpid(), 10, 0)));
+=======
+			replace_string(&(info->argv[i]),
+				dupli_sat(convnum(getpid(), 10, 0)));
+>>>>>>> 87d3fb219a3b097ecdf6539deb4eee44e6c4f40e
 			continue;
 		}
 		n = n_start(inf->env, &inf->argv[iii][1], '=');
 		if (n)
 		{
+<<<<<<< HEAD
 			rep_str(&(inf->argv[iii]),
 				_strdup(char_str(n->str, '=') + 1));
 			continue;
 		}
 		rep_str(&inf->argv[iii], _strdup(""));
+=======
+			replace_string(&(info->argv[i]),
+				dupli_sat(char_str(node->str, '=') + 1));
+			continue;
+		}
+		replace_string(&info->argv[i], dupli_sat(""));
+>>>>>>> 87d3fb219a3b097ecdf6539deb4eee44e6c4f40e
 
 	}
 	return (0);

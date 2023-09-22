@@ -1,87 +1,87 @@
 #include "shell.h"
 
 /**
- * _strcpy - copies a string
- * @dest: the destination
- * @src: the source
+ * cpy_stri - copy string
+ * @roa: the desti
+ * @ori: the source
  *
- * Return: pointer to destination
+ * Return: pointer to road
  */
-char *_strcpy(char *dest, char *src)
+char *cpy_stri(char *roa, char *ori)
 {
 	int i = 0;
 
-	if (dest == src || src == 0)
-		return (dest);
-	while (src[i])
+	if (roa == ori || ori == 0)
+		return (roa);
+	while (ori[i])
 	{
-		dest[i] = src[i];
+		roa[i] = ori[i];
 		i++;
 	}
-	dest[i] = 0;
-	return (dest);
+	roa[i] = 0;
+	return (roa);
 }
 
 /**
- * _strdup - duplicates a string
+ * dupli_sat - duplicate string
  * @str: the string to duplicate
  *
  * Return: pointer to the duplicated string
  */
-char *_strdup(const char *str)
+char *dupli_sat(const char *str)
 {
-	int length = 0;
-	char *ret;
+	int len = 0;
+	char *fit;
 
 	if (str == NULL)
 		return (NULL);
 	while (*str++)
-		length++;
-	ret = malloc(sizeof(char) * (length + 1));
-	if (!ret)
+		len++;
+	fit = malloc(sizeof(char) * (len + 1));
+	if (!fit)
 		return (NULL);
-	for (length++; length--;)
-		ret[length] = *--str;
-	return (ret);
+	for (len++; len--;)
+		fit[len] = *--str;
+	return (fit);
 }
 
 /**
- *_puts - prints an input string
- *@str: the string to be printed
+ *_puts - type input of string
+ *@str: printed string
  *
  * Return: Nothing
  */
 void _puts(char *str)
 {
-	int i = 0;
+	int x = 0;
 
 	if (!str)
 		return;
-	while (str[i] != '\0')
+	while (str[x] != '\0')
 	{
-		_putchar(str[i]);
-		i++;
+		_putchar(str[x]);
+		x++;
 	}
 }
 
 /**
- * _putchar - writes the character c to stdout
- * @c: The character to print
+ * _putchar - func that print char
+ * @ch: The printed char
  *
  * Return: On success 1.
- * On error, -1 is returned, and errno is set appropriately.
+ * On error, -1 is returned
  */
-int _putchar(char c)
+int _putchar(char ch)
 {
-	static int i;
+	static int x;
 	static char buf[WRITE_BUF_SIZE];
 
-	if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)
+	if (ch == BUF_FLUSH || x >= WRITE_BUF_SIZE)
 	{
-		write(1, buf, i);
-		i = 0;
+		write(1, buf, x);
+		x = 0;
 	}
-	if (c != BUF_FLUSH)
-		buf[i++] = c;
+	if (ch != BUF_FLUSH)
+		buf[x++] = ch;
 	return (1);
 }

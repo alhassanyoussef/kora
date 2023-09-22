@@ -136,7 +136,7 @@ int get_linee(info_t *id, char **ptr, size_t *lenthgth)
 
 	c = char_str(buff + i, '\n');
 	k = c ? 1 + (unsigned int)(c - buff) : lenth;
-	new_p = _realloc(p, s, s ? s + k : k + 1);
+	new_p = re_allo(p, s, s ? s + k : k + 1);
 	if (!new_p)
 		return (p ? free(p), -1 : -1);
 

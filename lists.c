@@ -18,11 +18,11 @@ list_t *insert_node(list_t **headd, const char *str, int num)
 	new_headd = malloc(sizeof(list_t));
 	if (!new_headd)
 		return (NULL);
-	_memset((void *)new_headd, 0, sizeof(list_t));
+	_senna((void *)new_headd, 0, sizeof(list_t));
 	new_headd->num = num;
 	if (str)
 	{
-		new_headd->str = _strdup(str);
+		new_headd->str = dupli_sat(str);
 		if (!new_headd->str)
 		{
 			free(new_headd);
@@ -54,11 +54,11 @@ list_t *add_nody_end(list_t **headd, const char *str, int num)
 	new_nody = malloc(sizeof(list_t));
 	if (!new_nody)
 		return (NULL);
-	_memset((void *)new_nody, 0, sizeof(list_t));
+	_senna((void *)new_nody, 0, sizeof(list_t));
 	new_nody->num = num;
 	if (str)
 	{
-		new_nody->str = _strdup(str);
+		new_nody->str = dupli_sat(str);
 		if (!new_nody->str)
 		{
 			free(new_nody);

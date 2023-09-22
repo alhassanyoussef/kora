@@ -1,62 +1,62 @@
 #include "shell.h"
 
 /**
- **_memset - fills memory with a constant byte
- *@s: the pointer to the memory area
- *@b: the byte to fill *s with
- *@n: the amount of bytes to be filled
+ **_senna - fill memory by byte
+ *@m: poit to memory
+ *@by: byte to fil *s
+ *@am: the ammount of filled bytes
  *Return: (s) a pointer to the memory area s
  */
-char *_memset(char *s, char b, unsigned int n)
+char *_senna(char *m, char by, unsigned int am)
 {
-	unsigned int i;
+	unsigned int x;
 
-	for (i = 0; i < n; i++)
-		s[i] = b;
-	return (s);
+	for (x = 0; x < am; x++)
+		m[x] = by;
+	return (m);
 }
 
 /**
- * ffree - frees a string of strings
- * @pp: string of strings
+ * vladimer - _free a str of str
+ * @ss: str of str
  */
-void ffree(char **pp)
+void vladimer(char **ss)
 {
-	char **a = pp;
+	char **b = ss;
 
-	if (!pp)
+	if (!ss)
 		return;
-	while (*pp)
-		free(*pp++);
-	free(a);
+	while (*ss)
+		free(*ss++);
+	free(b);
 }
 
 /**
- * _realloc - reallocates a block of memory
- * @ptr: pointer to previous malloc'ated block
- * @old_size: byte size of previous block
- * @new_size: byte size of new block
+ * re_allo - func that reallocate a block of memory
+ * @p_tr: pointer
+ * @old_man: byte_size of previous block
+ * @young_man: byte size of new block
  *
  * Return: pointer to da ol'block nameen.
  */
-void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
+void *re_allo(void *p_tr, unsigned int old_man, unsigned int young_man)
 {
 	char *p;
 
-	if (!ptr)
-		return (malloc(new_size));
-	if (!new_size)
-		return (free(ptr), NULL);
-	if (new_size == old_size)
-		return (ptr);
+	if (!p_tr)
+		return (malloc(young_man));
+	if (!young_man)
+		return (free(p_tr), NULL);
+	if (young_man == old_man)
+		return (p_tr);
 
-	p = malloc(new_size);
+	p = malloc(young_man);
 	if (!p)
 		return (NULL);
 
-	old_size = old_size < new_size ? old_size : new_size;
-	while (old_size--)
-		p[old_size] = ((char *)ptr)[old_size];
-	free(ptr);
+	old_man = old_man < young_man ? old_man : young_man;
+	while (old_man--)
+		p[old_man] = ((char *)p_tr)[old_man];
+	free(p_tr);
 	return (p);
 }

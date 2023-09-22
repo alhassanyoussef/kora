@@ -67,7 +67,7 @@ int seraphine_str(info_t *in_fo, char *cha, char *cap)
 	vanilla = malloc(len_str(cha) + len_str(cap) + 2);
 	if (!vanilla)
 		return (1);
-	_strcpy(vanilla, cha);
+	cpy_stri(vanilla, cha);
 	cat_str(vanilla, "=");
 	cat_str(vanilla, cap);
 	cream = in_fo->env;
