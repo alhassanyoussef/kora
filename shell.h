@@ -188,9 +188,9 @@ int get_linee(info_t *, char **, size_t *);
 void zed_assian(int);
 
 /* prototyps_getinfo.c */
-void clear_info(info_t *);
-void set_info(info_t *, char **);
-void free_info(info_t *, int);
+void clinformation(info_t *);
+void s_information(info_t *, char **);
+void frinformation(info_t *, int);
 
 /* prototyps_environ.c */
 char *get_enviro(info_t *, const char *);
@@ -219,11 +219,11 @@ int del_nody_atindex(list_t **, unsigned int);
 void release_lis(list_t **);
 
 /* prototyps_lists1.c */
-size_t list_len(const list_t *);
-char **list_to_strings(list_t *);
-size_t print_list(const list_t *);
-list_t *node_starts_with(list_t *, char *, char);
-ssize_t get_node_index(list_t *, list_t *);
+size_t listlength(const list_t *);
+char **listrings(list_t *);
+size_t pri_li(const list_t *);
+list_t *n_start(list_t *, char *, char);
+ssize_t gt_index(list_t *, list_t *);
 
 /* prototyps_vars.c */
 int is_chain(info_t *, char *, size_t *);

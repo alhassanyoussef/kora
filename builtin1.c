@@ -8,7 +8,7 @@
  */
 int my_date(info_t *info)
 {
-	print_list(info->history);
+	pri_li(info->history);
 	return (0);
 }
 
@@ -30,7 +30,7 @@ int uncont_alias(info_t *info, char *str)
 	b = *a;
 	*a = 0;
 	vex = del_nody_atindex(&(info->alias),
-		get_node_index(info->alias, node_starts_with(info->alias, str, -1)));
+		gt_index(info->alias, n_start(info->alias, str, -1)));
 	*a = b;
 	return (vex);
 }
@@ -107,7 +107,7 @@ int alias_mine(info_t *info)
 		if (p)
 			cont_ali(info, info->argv[j]);
 		else
-			impri_alias(node_starts_with(info->alias, info->argv[j], '='));
+			impri_alias(n_start(info->alias, info->argv[j], '='));
 	}
 
 	return (0);
