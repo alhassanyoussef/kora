@@ -9,7 +9,7 @@ char **catch_env(info_t *in_fo)
 {
 	if (!in_fo->environ || in_fo->env_changed)
 	{
-		in_fo->environ = list_to_strings(in_fo->env);
+		in_fo->environ = listrings(in_fo->env);
 		in_fo->env_changed = 0;
 	}
 
